@@ -1,0 +1,19 @@
+version: "2"
+services:
+    base:
+        build: .
+        image: "test/b2f-cpp2"
+    shell:
+        image: "test/b2f-cpp2"
+        command: bash
+        volumes:
+            - .:/app
+        working_dir: /app
+    web:
+        image: "test/b2f-cpp2"
+        command: /app/src/microhttpd 9080
+        ports:
+            - "3003:9080"
+        volumes:
+            - .:/app
+        working_dir: /app
